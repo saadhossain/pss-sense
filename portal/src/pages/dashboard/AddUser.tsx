@@ -29,6 +29,7 @@ const AddUser = () => {
     const form = e.target;
     const fullName = form.name.value;
     const password = form.password.value;
+    const phone = form.phone.value;
     //Handle Profile Picture upload
     const image = form.profile.files[0];
     const profileImg = await uploadFiletoFirebase('profileImage', image);
@@ -36,6 +37,7 @@ const AddUser = () => {
       const userInfo = {
         fullName,
         email,
+        phone,
         password,
         profileImg
       };
@@ -73,6 +75,10 @@ const AddUser = () => {
               <div>
                 <label htmlFor="email" className="block mb-2 text-lg">Email address</label>
                 <input onBlur={handleEmail} type="email" name="email" id="email" placeholder="Enter Email Address" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block mb-2 text-lg">Phone number</label>
+                <input type="tel" name="phone" id="phone" placeholder="Enter phone number" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
               </div>
               <div className='relative'>
                 <label htmlFor="password" className="text-lg">Password</label>

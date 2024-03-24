@@ -7,7 +7,7 @@ const useUser = (email: string) => {
         fetch(`http://localhost:3000/user?email=${email}`)
             .then(res => res.json())
             .then(data => {
-                setLoggedInUser(data)
+                setLoggedInUser(data[0])
                 setUserLoading(false)
             })
     }, [email])

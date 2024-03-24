@@ -9,7 +9,6 @@ import { uploadFiletoFirebase } from '../../utils/utils';
 
 const ModifyUser = () => {
     const user = useLoaderData() as UserInfoType;
-    console.log(user)
     const { processing, setProcessing } = useContext(
         DataContext
     ) as DataContextType;
@@ -23,7 +22,7 @@ const ModifyUser = () => {
     const handleUserUpdate = async (e: any) => {
         e.preventDefault();
         setProcessing(true);
-        if (!email) {
+        if (!user.email) {
             toast.error('Please fill the Form First...');
             setProcessing(false);
             return;
@@ -32,14 +31,16 @@ const ModifyUser = () => {
         const form = e.target;
         const fullName = form.name.value;
         const password = form.password.value;
+        const phone = form.phone.value;
         //Handle Profile Picture upload
         const image = form.profile.files[0];
         const profileImg = await uploadFiletoFirebase('profileImage', image);
         if (profileImg) {
             const userInfo = {
                 fullName,
-                email,
+                email:user.email,
                 password,
+                phone,
                 profileImg
             };
             // Save new user to Database
@@ -47,10 +48,10 @@ const ModifyUser = () => {
             form.reset();
             setEmail(undefined);
             setProcessing(false);
-            toast.success('New User added...');
+            toast.success('User info Modified....');
         }
     }
-    //Save New user to the database
+    //Update User information
     const updateUser = (userInfo: UserInfoType) => {
         fetch(`http://localhost:3000/users/${user._id}`, {
             method: 'PUT',
@@ -76,7 +77,7 @@ const ModifyUser = () => {
                             </div>
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-lg">Email address</label>
-                                <input onBlur={handleEmail} type="email" name="email" id="email" defaultValue={user.email} className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                                <input onBlur={handleEmail} type="email" name="email" id="email" defaultValue={user.email} className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" disabled/>
                             </div>
                             <div className='relative'>
                                 <label htmlFor="password" className="text-lg">Password</label>
@@ -88,6 +89,10 @@ const ModifyUser = () => {
                                 </div>
                             </div>
                             <div>
+                                <label htmlFor="phone" className="text-lg">Phone Number</label>
+                                <input type="tel" name="phone" defaultValue={user.phone} className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            </div>
+                            <div>
                                 <div>
                                     <label htmlFor="profile" className="text-lg">Profile Picture</label>
                                     <input type="file" name="profile" id="profile" accept='image/*' className="w-full px-3 py-2 border rounded-md border-gray-800" />
@@ -96,8 +101,8 @@ const ModifyUser = () => {
                         </div>
                         <div className="space-y-2">
                             <div>
-                                {/* Adding User Button */}
-                                <button type="submit" className={`w-full px-8 py-3 font-semibold rounded-md bg-gray-800 text-white`}>{processing ? <ButtonLoader title='Adding User' /> : 'Add User'}</button>
+                                {/* Modifiying User Button */}
+                                <button type="submit" className={`w-full px-8 py-3 font-semibold rounded-md bg-gray-800 text-white`}>{processing ? <ButtonLoader title='Modifying User' /> : 'Modify User'}</button>
                             </div>
                         </div>
                     </form>

@@ -12,5 +12,6 @@ export interface UserInfoType{
     fullName:string | null;
     email:string;
     password:string | null;
-    profileImg:string | undefined
+    profileImg?:string | undefined;
+    phone?:string | number;
 }
