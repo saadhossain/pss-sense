@@ -9,10 +9,10 @@ import { uploadFiletoFirebase } from '../../utils/utils';
 
 const ModifyUser = () => {
     const user = useLoaderData() as UserInfoType;
+    console.log(user)
     const { processing, setProcessing } = useContext(
         DataContext
     ) as DataContextType;
-    console.log(user);
 
     //Set email
     const [email, setEmail] = useState();

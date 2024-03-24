@@ -60,7 +60,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/modifyuser/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/users/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:3000/user/${params.id}`),
                 element: <ModifyUser />
             },
         ]

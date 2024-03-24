@@ -84,7 +84,7 @@ const dbConnect = () => {
         const id = req.params.id;
         const query = { _id: ObjectId(id) }
         const singleUser = await users.find(query).toArray();
-        res.send(singleUser)
+        res.send(singleUser[0])
     })
     //Delete a user
     app.delete('/users/:id', async (req, res) => {
