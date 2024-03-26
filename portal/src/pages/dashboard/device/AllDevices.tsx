@@ -3,13 +3,13 @@ import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash, FaUserEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { UserInfoType } from '../../types/UserType';
+import { UserInfoType } from '../../../types/UserType';
 
-const AllUsers = () => {
+const AllDevices = () => {
   //State for show password
   const [hidePass, setHidePass] = useState(true);
   //Handle user delete function
-  const handleDeleteUser = async (userId: string | undefined) => {
+  const handleDeleteDevice = async (userId: string | undefined) => {
     const confirmation = window.confirm('Do You Want to Delete This User?');
     if (confirmation) {
       const res = await fetch(`http://localhost:3000/users/${userId}`, {
@@ -22,21 +22,22 @@ const AllUsers = () => {
     }
   }
   //Get all users from database
-  const [users, setUsers] = useState<any>([])
+  const [devices, setDevices] = useState<any>([])
   useEffect(() => {
-    fetch('http://localhost:3000/users')
+    fetch('http://localhost:3000/devices')
       .then(res => res.json())
       .then(data => {
-        setUsers(data);
+        setDevices(data);
       })
-  }, [handleDeleteUser]);
+  }, [handleDeleteDevice]);
+
   return (
     <div>
-      <h2 className='text-xl md:text-2xl font-semibold my-2 md:my-5 border-l-4 border-primary pl-2 ml-3 md:ml-0'>All Users</h2>
+      <h2 className='text-xl md:text-2xl font-semibold my-2 md:my-5 border-l-4 border-primary pl-2 ml-3 md:ml-0'>All Devices</h2>
 
-      {/* Users table */}
+      {/* Devices table */}
       {
-        users.length ? (
+        devices.length ?
           <div className="overflow-x-auto text-dark">
             <table className="table">
               {/* head */}
@@ -60,7 +61,7 @@ const AllUsers = () => {
               <tbody>
                 {/* Single User Data */}
                 {
-                  users.map((user: UserInfoType, index: number) => <tr key={user._id}>
+                  devices.map((user: UserInfoType, index: number) => <tr key={user._id}>
                     <th>{index + 1}</th>
                     <td>{user.fullName}</td>
                     <td>{user.email}</td>
@@ -71,20 +72,20 @@ const AllUsers = () => {
                     <td><img src={user.profileImg} width={30} className='rounded-lg' /></td>
                     <td className='flex gap-2 items-center justify-center'>
                       <Link to={`/dashboard/modifyuser/${user._id}`}><FaUserEdit className='w-6 h-6 text-primary cursor-pointer' /></Link>
-                      <FaDeleteLeft className='w-6 h-6 text-red-700 cursor-pointer' onClick={() => handleDeleteUser(user._id)} />
+                      <FaDeleteLeft className='w-6 h-6 text-red-700 cursor-pointer' onClick={() => handleDeleteDevice(user._id)} />
                     </td>
                   </tr>)
                 }
               </tbody>
             </table>
           </div>
-        ) :
-          (
-            <h4 className='text-xl font-semibold'>No User Found</h4>
-          )
+          :
+          <div>
+            <h4 className='text-xl font-semibold'>No Device Found</h4>
+          </div>
       }
     </div>
   )
 }
 
-export default AllUsers
+export default AllDevices

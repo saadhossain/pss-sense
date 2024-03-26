@@ -9,9 +9,9 @@ export interface UserType{
 
 export interface UserInfoType{
     _id?:string;
-    fullName:string | null;
-    email:string;
-    password:string | null;
+    fullName:string | null | any;
+    email:string | any;
+    password:string | null | any;
     profileImg?:string | undefined;
-    phone?:string | number;
+    phone?:string | number | any;
 }

@@ -12,6 +12,8 @@ import { default as AllUsers } from '../pages/dashboard/AllUsers';
 import Dashboard from '../pages/dashboard/Dashboard';
 import ModifyUser from '../pages/dashboard/ModifyUser';
 import PrivateRouter from './PrivateRouter';
+import AddDevice from '../pages/dashboard/device/AddDevice';
+import AllDevices from '../pages/dashboard/device/AllDevices';
 
 export const Routers = createBrowserRouter([
     {
@@ -63,6 +65,14 @@ export const Routers = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:3000/user/${params.id}`),
                 element: <ModifyUser />
             },
+            {
+                path:'/dashboard/add-device',
+                element:<AddDevice/>
+            },
+            {
+                path:'/dashboard/all-device',
+                element:<AllDevices/>
+            }
         ]
     },
 ])

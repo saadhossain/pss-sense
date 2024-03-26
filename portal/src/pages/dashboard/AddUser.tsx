@@ -63,7 +63,7 @@ const AddUser = () => {
   const [hidePass, setHidePass] = useState(true);
   return (
     <div className='min-h-screen'>
-      <h2 className='text-xl md:text-2xl font-semibold my-2 md:my-5 border-l-4 border-primary pl-2 ml-3 md:ml-0'>Add Users</h2>
+      <h2 className='text-xl md:text-2xl font-semibold my-2 md:my-5 border-l-4 border-primary pl-2 ml-3 md:ml-0'>Add an User</h2>
       <div className="w-full flex flex-col rounded-lg bg-slate-50 text-gray-800 shadow-xl">
         <div className='p-6'>
           <form onSubmit={handleRegistration} className="space-y-12 ng-untouched ng-pristine ng-valid">
