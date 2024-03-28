@@ -47,11 +47,6 @@ const Register = () => {
             };
             createUser(email, password)
                 .then((result: any) => {
-                    updateUser(fullName, profileImg)
-                        .then(() => {
-                        })
-                    // Save new user to Database
-                    saveUserToDB(userInfo)
                     //Get Access token from the server and save it to local storage
                     fetch('http://localhost:3000/getToken', {
                         method: 'POST',
@@ -63,7 +58,13 @@ const Register = () => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.accessToken) {
-                                localStorage.setItem('AccessToken', data.accessToken)
+                                localStorage.setItem('AccessToken', data.accessToken);
+                                // Save new user to Database
+                                saveUserToDB(userInfo);
+                                //Update User Infomations
+                                updateUser(fullName, profileImg)
+                                    .then(() => {
+                                    })
                                 //After Saving the token to local storage then do others tasks
                                 form.reset()
                                 toast.success('Account Registration successful... Redirecting...')
@@ -80,13 +81,16 @@ const Register = () => {
     }
     //Save New user to the database
     const saveUserToDB = (userInfo: UserInfoType) => {
+        //Get User Access Token
+        const accessToken = localStorage.getItem('AccessToken');
         fetch(`http://localhost:3000/users`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(userInfo)
-        })
+        });
     }
     return (
         <div className='register-bg min-h-screen'>
@@ -128,12 +132,12 @@ const Register = () => {
                                 </p>
                             </div>
                         </form>
-                        <button
+                        {/* <button
                             type="button"
                             className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-primary hover:border-primary hover:text-white">
                             <FaGoogle></FaGoogle>
                             <p>Continue with Google</p>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>

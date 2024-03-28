@@ -13,6 +13,7 @@ const DashboardSidebar = () => {
     const { loggedInUser } = useUser(user?.email);
     const handleSignOut = () => {
         logOut();
+        localStorage.removeItem('AccessToken');
         toast.success('You are logged out...')
     }
     return (

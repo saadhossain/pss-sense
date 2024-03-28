@@ -1,12 +1,13 @@
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { DataContext, DataContextType } from '../context/AuthProvider';
-import toast from 'react-hot-toast';
 
 const UserAvater = () => {
     const { user, logOut } = useContext(DataContext) as DataContextType;
-    const handleSignOut = ()=> {
+    const handleSignOut = () => {
         logOut();
+        localStorage.removeItem('AccessToken');
         toast.success('You are logged out...')
     }
     return (
@@ -15,7 +16,7 @@ const UserAvater = () => {
                 <img alt="User Avater Default" src={user.photoURL} className='w-10 h-10 border-2 border-primary rounded-full' />
             </div>
             <ul tabIndex={0} className="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
+                <li>
                     <Link to='/dashboard' className="justify-between">
                         Dashboard
                     </Link>

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { UserInfoType } from '../../types/UserType';
 
 const AllUsers = () => {
+  //Get User Access Token
+  const accessToken = localStorage.getItem('AccessToken');
   //State for show password
   const [hidePass, setHidePass] = useState(true);
   //Handle user delete function
@@ -14,6 +16,10 @@ const AllUsers = () => {
     if (confirmation) {
       const res = await fetch(`http://localhost:3000/users/${userId}`, {
         method: 'DELETE',
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
       });
       const data = await res.json();
       if (data.acknowledged === true) {
@@ -24,11 +30,18 @@ const AllUsers = () => {
   //Get all users from database
   const [users, setUsers] = useState<any>([])
   useEffect(() => {
-    fetch('http://localhost:3000/users')
-      .then(res => res.json())
-      .then(data => {
-        setUsers(data);
+    const getUsers = async () => {
+      const res = await fetch('http://localhost:3000/users', {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
       })
+      const data = await res.json();
+      setUsers(data);
+    }
+    getUsers();
   }, [handleDeleteUser]);
   return (
     <div>
