@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash, FaUserEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { UserInfoType } from '../../types/UserType';
+import { DataContext, DataContextType } from '../../context/AuthProvider';
+import useUser from '../../hooks/useUser';
 
 const AllUsers = () => {
+  const { user } = useContext(DataContext) as DataContextType;
+    //Get LoggedIn user from database
+    const { loggedInUser } = useUser(user?.email);
   //Get User Access Token
   const accessToken = localStorage.getItem('AccessToken');
   //State for show password
@@ -14,6 +19,11 @@ const AllUsers = () => {
   const handleDeleteUser = async (userId: string | undefined) => {
     const confirmation = window.confirm('Do You Want to Delete This User?');
     if (confirmation) {
+      //Can't delete user if role is admin
+      if(loggedInUser.role === 'admin'){
+        toast.error("Sorry! This is admin, it can't be deleted");
+        return;
+      }
       const res = await fetch(`https://pss-sense-apis.vercel.app/users/${userId}`, {
         method: 'DELETE',
         headers: {
