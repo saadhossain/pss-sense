@@ -36,7 +36,7 @@ const DashboardSidebar = () => {
 
                 {/* Devices dropdown */}
                 <li className={`${loggedInUser.role !== 'admin' && 'hidden'}`}>
-                    <div  onClick={() => setCollapsDevice(!collapseDevice)} className='flex gap-2 items-center justify-between cursor-pointer'>
+                    <div onClick={() => setCollapsDevice(!collapseDevice)} className='flex gap-2 items-center justify-between cursor-pointer'>
                         Devices
                         <div>
                             {collapseDevice ? <IoIosArrowDown /> : <IoIosArrowUp />}
@@ -47,6 +47,8 @@ const DashboardSidebar = () => {
                         <li className='border-l-2 border-primary my-2 pl-2 hover:bg-primary'><Link to='/dashboard/all-device'>All Devices</Link></li>
                     </ul>
                 </li>
+                <li><Link to='/dashboard'>Activity</Link></li>
+                <li><Link to='/dashboard'>Setting</Link></li>
                 <li onClick={() => handleSignOut()} className='cursor-pointer flex gap-1 items-center hover:ml-2 duration-500'>Logout <IoMdLogOut className='text-primary w-5 h-5' /></li>
             </ul>
         </div>

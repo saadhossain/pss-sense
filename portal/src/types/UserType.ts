@@ -14,4 +14,5 @@ export interface UserInfoType{
     password:string | null | any;
     profileImg?:string | undefined;
     phone?:string | number | any;
+    role?:string;
 }
