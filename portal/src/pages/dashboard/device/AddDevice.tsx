@@ -2,14 +2,16 @@ import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import ButtonLoader from '../../../components/Loader/ButtonLoader';
 import { DataContext, DataContextType } from '../../../context/AuthProvider';
+import useUser from '../../../hooks/useUser';
 import { UserInfoType } from '../../../types/UserType';
 import { uploadFiletoFirebase } from '../../../utils/utils';
 
 const AddDevice = () => {
-    const { processing, setProcessing } = useContext(
+    const { processing, setProcessing, user } = useContext(
         DataContext
     ) as DataContextType;
-
+    //Get LoggedIn user from database
+    const { loggedInUser } = useUser(user?.email);
     //Set email
     const [serial, setSerial] = useState();
     //Get the email from the input
@@ -79,8 +81,12 @@ const AddDevice = () => {
                                 <input type="text" name="name" id="name" placeholder="Customer Device Name" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
                             </div>
                             <div>
-                                <label htmlFor="name" className="block mb-2 text-lg">Customer ID</label>
-                                <input type="text" name="name" id="name" placeholder="Customer ID" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                                <label htmlFor="customerId" className="block mb-2 text-lg">Customer ID</label>
+                                <input type="text" name="customerId" id="customerId" value={loggedInUser._id} disabled className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            </div>
+                            <div>
+                                <label htmlFor="email" className="block mb-2 text-lg">Customer Email</label>
+                                <input type="email" name="email" id="email" value={loggedInUser.email} disabled className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
                             </div>
                             <div>
                                 <label htmlFor="name" className="block mb-2 text-lg">Device Network Password </label>
