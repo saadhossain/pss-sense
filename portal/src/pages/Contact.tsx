@@ -1,7 +1,12 @@
-import ComingSoon from '../components/coming-soon/ComingSoon';
+import toast from 'react-hot-toast';
 import SupportDesk from '../assets/supportdesk.jpg';
 
 const Contact = () => {
+    const sendEmail = (e: any) => {
+        e.preventDefault();
+        toast.success('Thank your for Your Message, we will contact you Soon...')
+        e.target.reset();
+    };
     return (
         <div className='mx-auto'>
             <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 text-black">
@@ -12,7 +17,7 @@ const Contact = () => {
                     </div>
                     <img src={SupportDesk} alt="Contact our customer support" className="" />
                 </div>
-                <form className="space-y-6 bg-gray-800 p-8 rounded-lg text-white">
+                <form onSubmit={sendEmail} className="space-y-6 bg-gray-800 p-8 rounded-lg text-white">
                     <div>
                         <label htmlFor="name" className="text-sm">Full name</label>
                         <input id="name" type="text" placeholder="Your name" className="text-gray-800 w-full p-3 rounded  bg-white" />

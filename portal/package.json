@@ -11,6 +11,7 @@
     "test": "tsc"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
     "dotenv-cli": "^7.1.0",
     "firebase": "^10.10.0",
     "localforage": "^1.10.0",
