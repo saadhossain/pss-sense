@@ -13,6 +13,8 @@ const Profile = () => {
     const { processing, setProcessing } = useContext(
         DataContext
     ) as DataContextType;
+    //Get User Access Token
+    const accessToken = localStorage.getItem('AccessToken');
 
     // Function to update user profile info
     const handleUpdateProfile = async (e: any) => {
@@ -47,7 +49,8 @@ const Profile = () => {
         fetch(`http://localhost:3000/users/${loggedInUser._id}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(userInfo)
         })
