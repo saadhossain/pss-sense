@@ -36,7 +36,7 @@ const AddDevice = () => {
     }
     //Save New user to the database
     const saveUserToDB = (userInfo: UserInfoType) => {
-        fetch(`http://localhost:3000/users`, {
+        fetch(`https://pss-sense-apis.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

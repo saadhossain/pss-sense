@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginBg from '../assets/login-bg.png';
 import ButtonLoader from '../components/Loader/ButtonLoader';
@@ -26,7 +25,7 @@ const Login = () => {
         userLogin(email, password)
             .then((result: any) => {
                 //Get Access token from the server and save it to local storage
-                fetch('http://localhost:3000/getToken', {
+                fetch('https://pss-sense-apis.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -12,7 +12,7 @@ const AllDevices = () => {
   const handleDeleteDevice = async (userId: string | undefined) => {
     const confirmation = window.confirm('Do You Want to Delete This User?');
     if (confirmation) {
-      const res = await fetch(`http://localhost:3000/users/${userId}`, {
+      const res = await fetch(`https://pss-sense-apis.vercel.app/users/${userId}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -24,7 +24,7 @@ const AllDevices = () => {
   //Get all users from database
   const [devices, setDevices] = useState<any>([])
   useEffect(() => {
-    fetch('http://localhost:3000/devices')
+    fetch('https://pss-sense-apis.vercel.app/devices')
       .then(res => res.json())
       .then(data => {
         setDevices(data);

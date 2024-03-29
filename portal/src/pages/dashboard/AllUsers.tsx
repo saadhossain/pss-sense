@@ -14,7 +14,7 @@ const AllUsers = () => {
   const handleDeleteUser = async (userId: string | undefined) => {
     const confirmation = window.confirm('Do You Want to Delete This User?');
     if (confirmation) {
-      const res = await fetch(`http://localhost:3000/users/${userId}`, {
+      const res = await fetch(`https://pss-sense-apis.vercel.app/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',
@@ -31,7 +31,7 @@ const AllUsers = () => {
   const [users, setUsers] = useState<any>([])
   useEffect(() => {
     const getUsers = async () => {
-      const res = await fetch('http://localhost:3000/users', {
+      const res = await fetch('https://pss-sense-apis.vercel.app/users', {
         method: 'GET',
         headers: {
           'content-type': 'application/json',

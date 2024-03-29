@@ -2,8 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from '../components/ErrorPage';
 import DashboardLayout from '../layout/DashboardLayout';
 import Main from '../layout/MainLayout';
+import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
+import Pricing from '../pages/Pricing';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
 import Services from '../pages/Services';
@@ -11,12 +13,10 @@ import AddUser from '../pages/dashboard/AddUser';
 import { default as AllUsers } from '../pages/dashboard/AllUsers';
 import Dashboard from '../pages/dashboard/Dashboard';
 import ModifyUser from '../pages/dashboard/ModifyUser';
-import PrivateRouter from './PrivateRouter';
 import AddDevice from '../pages/dashboard/device/AddDevice';
 import AllDevices from '../pages/dashboard/device/AllDevices';
 import AdminRouter from './AdminRouter';
-import Pricing from '../pages/Pricing';
-import Contact from '../pages/Contact';
+import PrivateRouter from './PrivateRouter';
 
 export const Routers = createBrowserRouter([
     {
@@ -73,16 +73,16 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/modifyuser/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/user/${params.id}`),
+                loader: ({ params }) => fetch(`https://pss-sense-apis.vercel.app/user/${params.id}`),
                 element: <AdminRouter><ModifyUser /></AdminRouter>
             },
             {
-                path:'/dashboard/add-device',
-                element:<AdminRouter><AddDevice/></AdminRouter>
+                path: '/dashboard/add-device',
+                element: <AdminRouter><AddDevice /></AdminRouter>
             },
             {
-                path:'/dashboard/all-device',
-                element:<AdminRouter><AllDevices/></AdminRouter>
+                path: '/dashboard/all-device',
+                element: <AdminRouter><AllDevices /></AdminRouter>
             }
         ]
     },

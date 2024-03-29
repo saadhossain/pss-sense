@@ -7,7 +7,7 @@ const useUser = (email: string) => {
     const accessToken = localStorage.getItem('AccessToken');
     useEffect(() => {
         const getUser = async () => {
-            const res = await fetch(`http://localhost:3000/user?email=${email}`, {
+            const res = await fetch(`https://pss-sense-apis.vercel.app/user?email=${email}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',

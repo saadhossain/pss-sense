@@ -46,7 +46,7 @@ const Profile = () => {
     }
     //Update User information
     const updateUser = (userInfo: UserInfoType) => {
-        fetch(`http://localhost:3000/users/${loggedInUser._id}`, {
+        fetch(`https://pss-sense-apis.vercel.app/users/${loggedInUser._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

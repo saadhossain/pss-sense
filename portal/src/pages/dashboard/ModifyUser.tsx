@@ -38,7 +38,7 @@ const ModifyUser = () => {
         if (profileImg) {
             const userInfo = {
                 fullName,
-                email:user.email,
+                email: user.email,
                 password,
                 phone,
                 profileImg
@@ -53,7 +53,7 @@ const ModifyUser = () => {
     }
     //Update User information
     const updateUser = (userInfo: UserInfoType) => {
-        fetch(`http://localhost:3000/users/${user._id}`, {
+        fetch(`https://pss-sense-apis.vercel.app/users/${user._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -77,7 +77,7 @@ const ModifyUser = () => {
                             </div>
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-lg">Email address</label>
-                                <input onBlur={handleEmail} type="email" name="email" id="email" defaultValue={user.email} className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" disabled/>
+                                <input onBlur={handleEmail} type="email" name="email" id="email" defaultValue={user.email} className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" disabled />
                             </div>
                             <div className='relative'>
                                 <label htmlFor="password" className="text-lg">Password</label>
