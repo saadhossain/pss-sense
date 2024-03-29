@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 //Require Cors
 const cors = require('cors')
-const whitelist = ['http://localhost:5173']
+const whitelist = ['http://localhost:5173', 'https://pss-sense.web.app']
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
