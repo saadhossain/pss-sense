@@ -14,6 +14,7 @@ import ModifyUser from '../pages/dashboard/ModifyUser';
 import PrivateRouter from './PrivateRouter';
 import AddDevice from '../pages/dashboard/device/AddDevice';
 import AllDevices from '../pages/dashboard/device/AllDevices';
+import AdminRouter from './AdminRouter';
 
 export const Routers = createBrowserRouter([
     {
@@ -54,24 +55,24 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/adduser',
-                element: <AddUser />
+                element: <AdminRouter><AddUser /></AdminRouter>
             },
             {
                 path: '/dashboard/allusers',
-                element: <AllUsers />
+                element: <AdminRouter><AllUsers /></AdminRouter>
             },
             {
                 path: '/dashboard/modifyuser/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/user/${params.id}`),
-                element: <ModifyUser />
+                element: <AdminRouter><ModifyUser /></AdminRouter>
             },
             {
                 path:'/dashboard/add-device',
-                element:<AddDevice/>
+                element:<AdminRouter><AddDevice/></AdminRouter>
             },
             {
                 path:'/dashboard/all-device',
-                element:<AllDevices/>
+                element:<AdminRouter><AllDevices/></AdminRouter>
             }
         ]
     },

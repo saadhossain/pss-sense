@@ -28,9 +28,9 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 //Generate JWT Token for the user
 app.post('/getToken', (req, res) => {
-    const user = req.body
+    const user = req.body;
     const token = jwt.sign(user, process.env.ACCESS_TOKEN, { expiresIn: '1d' })
-    res.send({ accesstoken: token })
+    res.send({ accessToken: token })
 })
 
 //Verify Token Send by user while requesting for a data
@@ -51,7 +51,7 @@ const verifyToken = (req, res, next) => {
 const dbConnect = () => {
     const users = client.db('pssSense').collection('users');
     //Save new user to the Database
-    app.post('/users', async (req, res) => {
+    app.post('/users', verifyToken, async (req, res) => {
         const user = req.body;
         const query = {
             email: user.email
@@ -64,13 +64,13 @@ const dbConnect = () => {
         res.send(result);
     })
     //Get All users from the database
-    app.get('/users', async (req, res) => {
+    app.get('/users', verifyToken, async (req, res) => {
         const query = {};
         const allUser = await users.find(query).toArray();
         res.send(allUser);
     })
     //Get a Specific user //Logged In from the database
-    app.get('/user', async (req, res) => {
+    app.get('/user', verifyToken, async (req, res) => {
         const email = req.query.email
         const query = {
             email: email
@@ -80,21 +80,21 @@ const dbConnect = () => {
     })
 
     //Get a single user by id
-    app.get('/user/:id', async (req, res) => {
+    app.get('/user/:id', verifyToken, async (req, res) => {
         const id = req.params.id;
         const query = { _id: ObjectId(id) }
         const singleUser = await users.find(query).toArray();
         res.send(singleUser[0])
     })
     //Delete a user
-    app.delete('/users/:id', async (req, res) => {
+    app.delete('/users/:id', verifyToken, async (req, res) => {
         const id = req.params.id;
         const query = { _id: ObjectId(id) }
         const result = await users.deleteOne(query)
         res.send(result)
     })
     //Update a User
-    app.put('/users/:id', async (req, res) => {
+    app.put('/users/:id', verifyToken, async (req, res) => {
         const id = req.params.id
         const filter = { _id: ObjectId(id) }
         const update = req.body

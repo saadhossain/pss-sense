@@ -35,8 +35,8 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if (data.accesstoken) {
-                            localStorage.setItem('AccessToken', data.accesstoken)
+                        if (data.accessToken) {
+                            localStorage.setItem('AccessToken', data.accessToken)
                             //After Saving the token to local storage then do others tasks
                             toast.success('User Login Successful...')
                             form.reset();
@@ -84,12 +84,12 @@ const Login = () => {
                                 </p>
                             </div>
                         </form>
-                        <button
+                        {/* <button
                             type="button"
                             className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-primary hover:border-primary hover:text-white">
                             <FaGoogle></FaGoogle>
                             <p>Login with Google</p>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
