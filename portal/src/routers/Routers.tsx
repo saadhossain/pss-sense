@@ -15,6 +15,8 @@ import PrivateRouter from './PrivateRouter';
 import AddDevice from '../pages/dashboard/device/AddDevice';
 import AllDevices from '../pages/dashboard/device/AllDevices';
 import AdminRouter from './AdminRouter';
+import Pricing from '../pages/Pricing';
+import Contact from '../pages/Contact';
 
 export const Routers = createBrowserRouter([
     {
@@ -29,6 +31,14 @@ export const Routers = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services />
+            },
+            {
+                path: '/pricing',
+                element: <Pricing />
+            },
+            {
+                path: '/contact',
+                element: <Contact />
             },
             {
                 path: '/login',

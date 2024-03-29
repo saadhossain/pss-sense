@@ -32,3 +32,9 @@ body {
 .bg-gradient {
     background-image: linear-gradient(to right, #6561B8, #4D5BB4);
 }
+
+.coming-soon-bg {
+    background-image: url('../src/assets/coming-soon-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}

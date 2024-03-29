@@ -1,12 +1,12 @@
 import React from 'react'
 import ComingSoon from '../components/coming-soon/ComingSoon'
 
-const Services = () => {
+const Pricing = () => {
     return (
         <div className='mx-auto'>
-            <ComingSoon title={'Services'} />
+            <ComingSoon title={'Pricing'} />
         </div>
     )
 }
 
-export default Services
+export default Pricing
