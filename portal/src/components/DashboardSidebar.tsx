@@ -21,8 +21,8 @@ const DashboardSidebar = () => {
             <ul className='flex flex-col gap-5'>
                 <li><Link to='/dashboard'>Dashboard</Link></li>
                 {/* Users dropdown */}
-                <li className={`${loggedInUser.role !== 'admin' && 'hidden'}`} onClick={() => setCollapseUser(!collapseUser)}>
-                    <div className='flex gap-2 items-center justify-between cursor-pointer'>
+                <li className={`${loggedInUser.role !== 'admin' && 'hidden'}`}>
+                    <div onClick={() => setCollapseUser(!collapseUser)} className='flex gap-2 items-center justify-between cursor-pointer'>
                         Users
                         <div>
                             {collapseUser ? <IoIosArrowDown /> : <IoIosArrowUp />}
@@ -35,8 +35,8 @@ const DashboardSidebar = () => {
                 </li>
 
                 {/* Devices dropdown */}
-                <li className={`${loggedInUser.role !== 'admin' && 'hidden'}`} onClick={() => setCollapsDevice(!collapseDevice)}>
-                    <div className='flex gap-2 items-center justify-between cursor-pointer'>
+                <li className={`${loggedInUser.role !== 'admin' && 'hidden'}`}>
+                    <div  onClick={() => setCollapsDevice(!collapseDevice)} className='flex gap-2 items-center justify-between cursor-pointer'>
                         Devices
                         <div>
                             {collapseDevice ? <IoIosArrowDown /> : <IoIosArrowUp />}
