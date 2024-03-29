@@ -29,11 +29,11 @@ const Dashboard = () => {
     getUsers();
   }, []);
   //Get loggedIn user
-  const {loggedInUser} = useUser(user?.email);
+  const { loggedInUser } = useUser(user?.email);
   return (
     <div>
       <h2 className='text-xl md:text-2xl font-semibold my-2 md:my-5 border-l-4 border-primary pl-2 ml-3 md:ml-0'>At a Glance</h2>
-      <div className='grid grid-cols-3 gap-20'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-20'>
         {/* Device Card */}
         <div className='bg-gray-800 p-5 rounded-lg text-white w-72'>
           <h3 className='text-xl font-semibold border-b-2 border-accent mb-5 pb-2'>Devices</h3>

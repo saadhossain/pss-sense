@@ -22,7 +22,7 @@ const Header = () => {
       <div className='w-11/12 lg:w-10/12 mx-auto flex justify-between items-center'>
         <Link to='/' className='flex gap-2 items-end'><img src={logo} alt='PSS-Sense' className='w-10' /><h3 className='font-semibold text-lg text-primary'>PSS-Sense</h3></Link>
         <div className='flex items-center gap-2'>
-          <ul className={`lg:flex items-center gap-6 bg-white w-full font-semibold absolute lg:static py-3 lg:py-2 px-10 shadow-lg lg:shadow-none duration-700 ease-in-out z-40 text-primary ${expand ? 'top-12 right-0' : 'top-[-600px] right-0'}`}>
+          <ul className={`lg:flex items-center gap-6 bg-white w-full font-semibold absolute md:static py-3 lg:py-2 px-10 shadow-lg lg:shadow-none duration-700 ease-in-out z-40 text-primary ${expand ? 'top-12 right-0' : 'top-[-600px] right-0'}`}>
             <li><NavLink to='/' className='flex gap-1 mb-3 lg:mb-0'>Home</NavLink></li>
             <li><NavLink to='/services' className='flex gap-1 mb-3 lg:mb-0'>Services</NavLink></li>
             <li><NavLink to='/pricing' className='flex gap-1 mb-3 lg:mb-0'>Pricing</NavLink></li>

@@ -7,12 +7,12 @@ const DashboardLayout = () => {
     return (
         <div>
             <Header />
-            <div className='min-h-[80vh] w-10/12 mx-auto'>
-                <div className='flex gap-2 my-5'>
+            <div className='min-h-[80vh] w-11/12 md:w-10/12 mx-auto'>
+                <div className='flex flex-col md:flex-row gap-2 my-5'>
                     <div className='flex-1'>
-                        <DashboardSidebar/>
+                        <DashboardSidebar />
                     </div>
-                    <div className='w-9/12'>
+                    <div className='w-full md:w-9/12'>
                         <Outlet />
                     </div>
                 </div>
