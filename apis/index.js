@@ -50,6 +50,7 @@ const verifyToken = (req, res, next) => {
 }
 const dbConnect = () => {
     const users = client.db('pssSense').collection('users');
+    const news = client.db('pssSense').collection('news');
     //Save new user to the Database
     app.post('/users', verifyToken, async (req, res) => {
         const user = req.body;
@@ -104,6 +105,12 @@ const dbConnect = () => {
         }
         const result = await users.updateOne(filter, updatedUser, options)
         res.send(result)
+    })
+    //Get All news from the database
+    app.get('/news', async (req, res) => {
+        const query = {};
+        const allNews = await news.find(query).toArray();
+        res.send(allNews);
     })
 
 }
